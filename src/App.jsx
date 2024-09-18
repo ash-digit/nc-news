@@ -6,7 +6,6 @@ import Dashboard from "./components/Dashboard";
 import Header from "./components/Header";
 import { Route, Link, useLocation, Switch } from "react-router-dom";
 
-import Product from "./components/Product";
 import { useState } from "react";
 function App() {
   let [articleId, setArticleId] = useState(null);
