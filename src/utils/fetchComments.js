@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const fetchArticles = (endPoint) => {
+export const fetchComments = (endPoint) => {
   const apiClient = axios.create({
     baseURL: "https://nc-news-project-s393.onrender.com/api",
     timeout: 1000,

@@ -1,11 +1,11 @@
-import { fetchData } from "../utils/fetchArticles";
+import { fetchArticles } from "../utils/fetchArticles";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 const Articles = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    fetchData("/articles").then((response) => {
+    fetchArticles("/articles").then((response) => {
       setArticles(response);
       setIsLoading(false);
     });
