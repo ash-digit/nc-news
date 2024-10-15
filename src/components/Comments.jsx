@@ -1,14 +1,13 @@
-import { fetchComments } from "../utils/fetchComments";
+import { api } from "../utils/api";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 
-const Comments = () => {
+const Comments = ({ article_id }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [comments, setComments] = useState([]);
-  const { article_id } = useParams();
+
   useEffect(() => {
-    fetchComments(`/articles/${article_id}/comments`).then((response) => {
-      setComments(response);
+    api(`/articles/${article_id}/comments`, "GET", null).then((comments) => {
+      setComments(comments);
       setIsLoading(false);
     });
   }, []);
