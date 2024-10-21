@@ -1,12 +1,12 @@
-import { fetchData } from "../utils/fetchArticles";
+import { api } from "../utils/api";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 const Articles = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    fetchData("/articles").then((response) => {
-      setArticles(response);
+    api("/articles", "GET", null).then((articles) => {
+      setArticles(articles);
       setIsLoading(false);
     });
   }, []);

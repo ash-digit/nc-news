@@ -39,3 +39,20 @@ body {
 .btn {
   padding: 1.5rem;
 }
+.comment {
+  display: flex;
+  flex-direction: column;
+  background-color: aquamarine;
+  width: 70%;
+  margin: 1.5rem;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.comment-field {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  justify-content: center;
+  align-items: center;
+}
