@@ -1,7 +1,6 @@
 import { api } from "../utils/api";
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 import Comments from "./Comments";
 import CommentField from "./CommentField";
@@ -21,9 +20,9 @@ const Article = () => {
       setArticles(article);
       setIsLoading(false);
       setVotes(article.votes);
-      if (user.loggedIn) {
-        console.log("the user is loggedIn");
-      }
+      // if (user.loggedIn) {
+      //   console.log("the user is loggedIn");
+      // }
     });
   }, [article_id]);
 
@@ -42,6 +41,7 @@ const Article = () => {
       setDisplayCommentField(false);
     }
   };
+
   const vote = (incVotes) => {
     setVotes((prevVotes) => prevVotes + incVotes);
 
@@ -80,7 +80,11 @@ const Article = () => {
             <button onClick={voteDownHandler}>Vote Down</button>
             <button onClick={commentFieldHandler}>Add a Comment</button>
           </div>
-          {displayCommentField ? <CommentField /> : <div></div>}
+          {displayCommentField ? (
+            <CommentField a_id={article_id} />
+          ) : (
+            <div></div>
+          )}
           {displayComments ? <Comments article_id={article_id} /> : <div></div>}
         </>
       )}
