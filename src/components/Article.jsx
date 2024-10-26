@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 
 import Comments from "./Comments";
 import CommentField from "./CommentField";
-import { loginContext } from "../App";
 
 const Article = () => {
   const [displayComments, setDisplayComments] = useState(false);
@@ -13,7 +12,6 @@ const Article = () => {
   const [article, setArticles] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { article_id } = useParams();
-  const user = useContext(loginContext);
 
   useEffect(() => {
     api(`/articles/${article_id}`, "GET", null).then((article) => {

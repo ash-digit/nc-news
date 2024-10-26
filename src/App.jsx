@@ -7,7 +7,7 @@ import { createContext } from "react";
 import { Route } from "react-router-dom";
 export const loginContext = createContext();
 function App() {
-  const user = { username: "ash_digit", loggedIn: true };
+  const user = { username: "grumpy19", loggedIn: true };
   return (
     <>
       <loginContext.Provider value={user}>

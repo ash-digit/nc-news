@@ -1,25 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { api } from "../utils/api";
+import commentSubmition from "../utils/commentSubmition.js";
+import { loginContext } from "../App";
 
 const CommentField = ({ a_id }) => {
   const [commentInTextField, setCommentInTextField] = useState("");
+  const user = useContext(loginContext);
 
-  const commentSubmition = (comment, article_id, user) => {
-    console.log("submited with ", article_id);
-    api(`/articles/${article_id}/comments`, "POST", {
-      author: user,
-      body: comment,
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
   const handleSubmit = (event) => {
     event.preventDefault();
-    commentSubmition(commentInTextField, a_id, "grumpy19");
+    commentSubmition(commentInTextField, a_id, user.username);
   };
 
   return (
