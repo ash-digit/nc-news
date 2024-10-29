@@ -1,7 +1,6 @@
 import { api } from "../utils/api";
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-
 import Comments from "./Comments";
 import CommentField from "./CommentField";
 
@@ -11,9 +10,7 @@ const Article = () => {
   const [votes, setVotes] = useState();
   const [article, setArticles] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-
   const [commentCreated, setCommentCreated] = useState(false);
-
   const { article_id } = useParams();
 
   useEffect(() => {

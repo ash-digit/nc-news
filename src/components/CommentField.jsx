@@ -1,18 +1,20 @@
 import { useContext, useState } from "react";
-import { api } from "../utils/api";
 import commentSubmition from "../utils/commentSubmition.js";
 import { loginContext } from "../App";
 
 const CommentField = ({ a_id, setCommentCreated }) => {
   const [commentInTextField, setCommentInTextField] = useState("");
+  const [commentSubmitError, setCommentSubmitError] = useState(false);
   const user = useContext(loginContext);
-
   const handleSubmit = (event) => {
     event.preventDefault();
     setCommentCreated(true);
-
-    console.log("comment created with ID: ", a_id);
-    commentSubmition(commentInTextField, a_id, user.username);
+    commentSubmition(
+      commentInTextField,
+      a_id,
+      user.username,
+      setCommentSubmitError
+    );
   };
 
   return (
@@ -28,6 +30,7 @@ const CommentField = ({ a_id, setCommentCreated }) => {
         required
       ></textarea>
       <button type="submit">Submit Comment</button>
+      {commentSubmitError ? <p>Couldn't Submit</p> : <p></p>}
     </form>
   );
 };

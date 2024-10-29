@@ -6,17 +6,16 @@ const Comments = ({ article_id, commentCreated, setCommentCreated }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [comments, setComments] = useState([]);
   const [commentDeleted, setCommentDeleted] = useState(false);
+  const [deleteError, setdeleteError] = useState(false);
   const user = useContext(loginContext);
 
   const deleteComment = (id) => {
     api(`/comments/${id}`, "DELETE")
-      .then((response) => {
+      .then(() => {
         setCommentDeleted(true);
-        console.log(`comment with ID: ${id} is deleted.`);
-        console.log(response);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        setdeleteError(true);
       });
   };
 
@@ -46,6 +45,7 @@ const Comments = ({ article_id, commentCreated, setCommentCreated }) => {
               ) : (
                 <div></div>
               )}
+              {deleteError ? <p>Couldn't Delete.</p> : <p></p>}
             </div>
           );
         })
