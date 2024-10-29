@@ -3,12 +3,15 @@ import { api } from "../utils/api";
 import commentSubmition from "../utils/commentSubmition.js";
 import { loginContext } from "../App";
 
-const CommentField = ({ a_id }) => {
+const CommentField = ({ a_id, setCommentCreated }) => {
   const [commentInTextField, setCommentInTextField] = useState("");
   const user = useContext(loginContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setCommentCreated(true);
+
+    console.log("comment created with ID: ", a_id);
     commentSubmition(commentInTextField, a_id, user.username);
   };
 

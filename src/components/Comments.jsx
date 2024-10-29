@@ -2,7 +2,7 @@ import { api } from "../utils/api";
 import { useState, useEffect, useContext } from "react";
 import { loginContext } from "../App";
 
-const Comments = ({ article_id }) => {
+const Comments = ({ article_id, commentCreated, setCommentCreated }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [comments, setComments] = useState([]);
   const [commentDeleted, setCommentDeleted] = useState(false);
@@ -23,9 +23,11 @@ const Comments = ({ article_id }) => {
   useEffect(() => {
     api(`/articles/${article_id}/comments`, "GET", null).then((comments) => {
       setComments(comments);
+      setCommentDeleted(false);
+      setCommentCreated(false);
       setIsLoading(false);
     });
-  }, [commentDeleted]);
+  }, [commentDeleted, commentCreated]);
   return (
     <>
       {isLoading ? (

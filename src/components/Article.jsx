@@ -11,6 +11,9 @@ const Article = () => {
   const [votes, setVotes] = useState();
   const [article, setArticles] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+
+  const [commentCreated, setCommentCreated] = useState(false);
+
   const { article_id } = useParams();
 
   useEffect(() => {
@@ -18,9 +21,6 @@ const Article = () => {
       setArticles(article);
       setIsLoading(false);
       setVotes(article.votes);
-      // if (user.loggedIn) {
-      //   console.log("the user is loggedIn");
-      // }
     });
   }, [article_id]);
 
@@ -79,11 +79,22 @@ const Article = () => {
             <button onClick={commentFieldHandler}>Add a Comment</button>
           </div>
           {displayCommentField ? (
-            <CommentField a_id={article_id} />
+            <CommentField
+              a_id={article_id}
+              setCommentCreated={setCommentCreated}
+            />
           ) : (
             <div></div>
           )}
-          {displayComments ? <Comments article_id={article_id} /> : <div></div>}
+          {displayComments ? (
+            <Comments
+              article_id={article_id}
+              commentCreated={commentCreated}
+              setCommentCreated={setCommentCreated}
+            />
+          ) : (
+            <div></div>
+          )}
         </>
       )}
     </>
